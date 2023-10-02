@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BsTask6</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+   <style>
+    .c1{
+        width: 600px;
+        height: 600px;
+        background-color:#f6f7f6;
+    }
+   </style>
+</head>
+<body>
+    <center>
+        <div class="c1">
+            <form action="https://www.google.com" onclick="">
+                <div class="form-group text-start mb-4 ms-4 me-4">
+                    <label for="name" class="form-label">Name: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" required>
+               
+                </div>
+                <div class="form-group text-start mb-4 ms-4 me-4">
+                    <label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group text-start mb-4 ms-4 me-4">
+                    <label for="password" class="form-label">Password: <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="password" required>
+                </div>     
+                <div class="form-group text-start mb-4 ms-4 me-4">
+                    <label for="formGroupExampleInput2">Hobbies</label>
+                    <br>
+                    <select  style="width: 100%; height:45px" requred>
+                        <option ></option>
+                        <option >Origami</option>
+                        <option >Painting</option>
+                        <option >Watching Anime</option>
+                    </select>
+                </div>
+                <div class="form-group text-start mb-4 ms-4 me-4">
+                    <button type="button" class="btn btn-danger btn-block" onclick="validateForm()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </center>   <script>
+        function validateForm() {
+            const form = document.querySelector("form");
+            const inputs = form.querySelectorAll("input[required], textarea[required]");
+            
+            // Remove existing warning messages
+            const warningMessages = document.querySelectorAll(".text-danger");
+            warningMessages.forEach(warning => {
+                warning.textContent = "";
+            });
+            
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (input.value.trim() === "") {
+                    isValid = false;
+                    input.classList.add("is-invalid");
+                    const fieldName = input.previousElementSibling.textContent.replace(":", "").trim();
+                    const warning = document.createElement("div");
+                    warning.classList.add("text-danger");
+                    warning.textContent = fieldName + " is required.";
+                    input.parentNode.appendChild(warning);
+                } else {
+                    input.classList.remove("is-invalid");
+                }
+            });
+            
+            if (isValid) {
+                form.submit();
+            }
+        }
+    </script>
+
+    <!-- Link to Bootstrap 5 JavaScript and other libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
